@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #14213d;
+  --navy-deep: #0c1528;
+  --gold: #c9a96e;
+  --gold-dark: #a8874a;
+  --cream: #f7f1e6;
+  --ivory: #fbf8f2;
+  --ink: #1b1b1b;
+  --muted: #6b645b;
+  --stone: #e8e0d3;
+  --white: #ffffff;
+  --background: var(--ivory);
+  --foreground: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+.container-shell {
+  width: min(1180px, 92vw);
+  margin-inline: auto;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.72rem 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  transition: background 160ms ease, transform 120ms ease;
+}
+
+.btn-gold:hover {
+  background: var(--gold-dark);
+  transform: translateY(-1px);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--ivory);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.72rem 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  transition: background 160ms ease;
+}
+
+.btn-navy:hover {
+  background: var(--navy-deep);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  padding: 0.68rem 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.section-title {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+}
+
+.section-copy {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.prose-dhc h2,
+.prose-dhc h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--navy);
+  margin: 1.4rem 0 0.6rem;
+}
+
+.prose-dhc p,
+.prose-dhc li {
+  color: var(--ink);
+  line-height: 1.8;
+  margin: 0.7rem 0;
+}
+
+.prose-dhc ul {
+  padding-left: 1.2rem;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid var(--stone);
+  background: var(--white);
+  padding: 0.7rem 0.85rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+  border-radius: 2px;
+}
+
+.field-input:focus {
+  outline: 1px solid var(--gold);
+  border-color: var(--gold);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
