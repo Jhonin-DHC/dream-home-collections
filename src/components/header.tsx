@@ -9,6 +9,7 @@ import { site } from "@/lib/site";
 const nav = [
   { href: "/", label: "Home" },
   { href: "/neighborhoods", label: "Neighborhoods" },
+  { href: "/service-area", label: "Service Area" },
   { href: "/our-blogs", label: "Blogs" }
 ];
 

@@ -29,5 +29,7 @@ export const reservedSlugs = new Set([
   "privacy-policy-page",
   "terms-of-service",
   "login",
-  "register"
+  "register",
+  "service-area",
+  "resources"
 ]);

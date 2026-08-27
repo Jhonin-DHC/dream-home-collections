@@ -1,3 +1,4 @@
+import { legalPages } from "@/data/legal-pages";
 import { getPublishedListings } from "@/lib/listings-service";
 import { getNeighborhoods } from "@/lib/neighborhoods-service";
 import { getPublishedPosts } from "@/lib/posts-service";
@@ -10,8 +11,15 @@ export default async function sitemap() {
     getPublishedPosts()
   ]);
 
-  const staticRoutes = ["", "/neighborhoods", "/our-blogs", "/privacy-policy-page", "/terms-of-service"].map((path) => ({
-    url: `${site.url}${path}`,
+  const staticRoutes = ["", "/neighborhoods", "/our-blogs", "/service-area", "/privacy-policy-page", "/terms-of-service"].map(
+    (path) => ({
+      url: `${site.url}${path}`,
+      lastModified: new Date()
+    })
+  );
+
+  const legalRoutes = legalPages.map((page) => ({
+    url: `${site.url}/resources/legal/${page.slug}`,
     lastModified: new Date()
   }));
 
@@ -20,5 +28,5 @@ export default async function sitemap() {
     lastModified: new Date()
   }));
 
-  return [...staticRoutes, ...dynamic];
+  return [...staticRoutes, ...legalRoutes, ...dynamic];
 }

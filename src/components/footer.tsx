@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="mt-16 border-t border-[var(--stone)] bg-[var(--navy)] text-[var(--ivory)]">
-      <div className="container-shell grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="container-shell grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Image src={site.logo} alt={site.name} width={200} height={56} className="h-12 w-auto brightness-0 invert" />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[var(--stone)]">{site.description}</p>
@@ -37,10 +37,33 @@ export function Footer() {
               <Link href="/our-blogs">Our Blogs</Link>
             </li>
             <li>
+              <Link href="/service-area">Service Area</Link>
+            </li>
+            <li>
               <Link href="/privacy-policy-page">Privacy Policy</Link>
             </li>
             <li>
               <Link href="/terms-of-service">Terms of Service</Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-[family-name:var(--font-serif)] text-xl">Legal</h3>
+          <ul className="mt-4 space-y-2 text-sm text-[var(--stone)]">
+            <li>
+              <Link href="/resources/legal/iabs">IABS</Link>
+            </li>
+            <li>
+              <Link href="/resources/legal/consumer-protection-notice">Consumer Protection</Link>
+            </li>
+            <li>
+              <Link href="/resources/legal/mls-rule-schedule-of-fines">MLS Schedule of Fines</Link>
+            </li>
+            <li>
+              <Link href="/resources/legal/mls-rules-and-regulations">MLS Rules</Link>
+            </li>
+            <li>
+              <Link href="/resources/legal/fair-housing">Fair Housing</Link>
             </li>
           </ul>
         </div>
