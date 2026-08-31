@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useState } from "react";
 import { toDisplayImageUrl } from "@/lib/r2-display";
 
 interface RemoteImageProps {
@@ -10,16 +10,22 @@ interface RemoteImageProps {
   sizes?: string;
 }
 
-export function RemoteImage({ src, alt, className, sizes = "256px" }: RemoteImageProps) {
+export function RemoteImage({ src, alt, className }: RemoteImageProps) {
+  const [failed, setFailed] = useState(false);
   if (!src) return null;
   const displaySrc = toDisplayImageUrl(src);
 
-  if (displaySrc.startsWith("/api/media/")) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={displaySrc} alt={alt} className={`absolute inset-0 h-full w-full ${className ?? ""}`} />
-    );
+  if (failed) {
+    return <div className="absolute inset-0 bg-[var(--navy)]" aria-hidden />;
   }
 
-  return <Image src={displaySrc} alt={alt} fill className={className} sizes={sizes} />;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={displaySrc}
+      alt={alt}
+      className={`absolute inset-0 h-full w-full ${className ?? ""}`}
+      onError={() => setFailed(true)}
+    />
+  );
 }

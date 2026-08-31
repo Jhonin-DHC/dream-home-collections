@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { InquiryForm } from "@/components/inquiry-form";
 import { ServiceAreaHubJsonLd } from "@/components/service-area/service-area-hub-json-ld";
 import { TexasServiceAreaMap } from "@/components/service-area/texas-service-area-map";
 import { getServiceAreaCopy } from "@/i18n/service-area-copy";
-import { site } from "@/lib/site";
 import {
   buildTexasCountyMap,
   EXTENDED_SERVICE_COUNT,
@@ -238,9 +238,13 @@ export function ServiceAreaPageContent() {
                 <Link href="/neighborhoods" className="btn-gold">
                   {t.startListing}
                 </Link>
-                <a href={`mailto:${site.email}?subject=Service%20Area%20Question`} className="btn-ghost">
+                <a href="#service-area-concierge" className="btn-ghost">
                   {t.contactConcierge}
                 </a>
+              </div>
+              <div id="service-area-concierge" className="mt-6 max-w-xl scroll-mt-28">
+                <p className="mb-3 text-sm font-semibold text-[var(--navy)]">Contact concierge</p>
+                <InquiryForm source="service-area" />
               </div>
             </div>
           </div>

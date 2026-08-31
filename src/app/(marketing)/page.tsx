@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getFeaturedListings } from "@/lib/listings-service";
 import { getNeighborhoods } from "@/lib/neighborhoods-service";
 import { getPublishedPosts } from "@/lib/posts-service";
@@ -20,6 +21,15 @@ export default async function HomePage() {
           <p className="text-xs uppercase tracking-[0.28em] text-[var(--gold)]">Texas luxury real estate</p>
           <h1 className="mt-4 font-[family-name:var(--font-serif)] text-5xl md:text-7xl">{site.tagline}</h1>
           <p className="mx-auto mt-5 max-w-2xl text-[var(--stone)]">{site.description}</p>
+          <p className="mt-8 text-xs sm:text-sm">
+            <Link
+              href="/resources/legal/iabs"
+              className="text-[var(--ivory)] underline underline-offset-4 hover:text-[var(--gold)]"
+              style={{ fontSize: "12pt" }}
+            >
+              TREC Information About Brokerage Services
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -60,7 +70,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[var(--navy)] py-16 text-[var(--ivory)]">
+      <section id="contact" className="bg-[var(--navy)] py-16 text-[var(--ivory)]">
         <div className="container-shell grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="font-[family-name:var(--font-serif)] text-4xl">Ready to find your dream home?</h2>

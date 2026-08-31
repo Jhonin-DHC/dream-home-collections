@@ -22,25 +22,30 @@ export function InquiryForm({
     setError(null);
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    const response = await fetch("/api/inquiries", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, listingId, listingSlug, listingTitle, source })
-    });
-    const payload = await response.json();
-    if (!response.ok) {
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, listingId, listingSlug, listingTitle, source })
+      });
+      const payload = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) {
+        setStatus("error");
+        setError(payload.error ?? "Unable to send your message.");
+        return;
+      }
+      setStatus("sent");
+      form.reset();
+    } catch {
       setStatus("error");
-      setError(payload.error ?? "Unable to send your message.");
-      return;
+      setError("Unable to send your message. Please try again.");
     }
-    setStatus("sent");
-    form.reset();
   };
 
   if (status === "sent") {
     return (
       <p className="border border-[var(--gold)] bg-white p-5 text-sm text-[var(--navy)]">
-        Thank you. A concierge will be in touch with personalized guidance.
+        Thank you. Your message has been received. A concierge will review it in the admin inbox.
       </p>
     );
   }
@@ -53,7 +58,7 @@ export function InquiryForm({
       <textarea name="message" className="field-input min-h-28" placeholder="How can we help?" required />
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
       <button type="submit" className="btn-gold w-full" disabled={status === "saving"}>
-        {status === "saving" ? "Sending..." : "Send message"}
+        {status === "saving" ? "Saving..." : "Send message"}
       </button>
     </form>
   );

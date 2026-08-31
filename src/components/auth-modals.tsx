@@ -1,10 +1,21 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
+
+async function readError(response: Response) {
+  const text = await response.text();
+  try {
+    const body = JSON.parse(text) as { error?: string };
+    return body.error || "Something went wrong.";
+  } catch {
+    return "Something went wrong. Please try again.";
+  }
+}
 
 function AuthModalsInner() {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
   const mode = searchParams.get("auth");
   const next = searchParams.get("next") || "/account";
@@ -14,11 +25,18 @@ function AuthModalsInner() {
 
   if (mode !== "login" && mode !== "register" && mode !== "forgot") return null;
 
+  const setAuth = (nextMode: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("auth", nextMode);
+    router.replace(`${pathname}?${params.toString()}`);
+  };
+
   const close = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.delete("auth");
-    url.searchParams.delete("next");
-    router.replace(`${url.pathname}${url.search}${url.hash}`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("auth");
+    params.delete("next");
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname);
   };
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -32,27 +50,37 @@ function AuthModalsInner() {
     const endpoint =
       mode === "register" ? "/api/members/register" : mode === "forgot" ? "/api/members/forgot-password" : "/api/members/login";
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    const body = await response.json();
-    setLoading(false);
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify(payload)
+      });
 
-    if (!response.ok) {
-      setError(body.error ?? "Something went wrong.");
-      return;
+      if (!response.ok) {
+        setError(await readError(response));
+        return;
+      }
+
+      if (mode === "forgot") {
+        setMessage("If that email exists, we sent a reset link. Check your inbox and spam folder.");
+        return;
+      }
+
+      if (mode === "register") {
+        setMessage("Account created. Taking you to your account…");
+        await new Promise((resolve) => setTimeout(resolve, 900));
+      }
+
+      close();
+      router.push(next);
+      router.refresh();
+    } catch {
+      setError("Could not reach the server. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    if (mode === "forgot") {
-      setMessage("If that email exists, we sent a reset link.");
-      return;
-    }
-
-    close();
-    router.push(next);
-    router.refresh();
   };
 
   const title = mode === "register" ? "Create your account" : mode === "forgot" ? "Reset password" : "Member login";
@@ -63,9 +91,7 @@ function AuthModalsInner() {
         <p className="text-xs uppercase tracking-[0.2em] text-[var(--gold-dark)]">Dream Home Collections</p>
         <h2 className="section-title mt-2 text-3xl">{title}</h2>
         <form onSubmit={submit} className="mt-6 space-y-3">
-          {mode === "register" ? (
-            <input name="name" className="field-input" placeholder="Full name" required />
-          ) : null}
+          {mode === "register" ? <input name="name" className="field-input" placeholder="Full name" required /> : null}
           <input name="email" type="email" className="field-input" placeholder="Email" required />
           {mode === "register" ? <input name="phone" className="field-input" placeholder="Phone (optional)" /> : null}
           {mode !== "forgot" ? (
@@ -80,15 +106,15 @@ function AuthModalsInner() {
         <div className="mt-4 flex justify-between text-sm text-[var(--muted)]">
           {mode === "login" ? (
             <>
-              <button type="button" onClick={() => router.replace("?auth=register")}>
+              <button type="button" onClick={() => setAuth("register")}>
                 Create account
               </button>
-              <button type="button" onClick={() => router.replace("?auth=forgot")}>
+              <button type="button" onClick={() => setAuth("forgot")}>
                 Forgot password
               </button>
             </>
           ) : (
-            <button type="button" onClick={() => router.replace("?auth=login")}>
+            <button type="button" onClick={() => setAuth("login")}>
               Back to login
             </button>
           )}

@@ -4,7 +4,7 @@ import { LegalPageBody } from "@/components/legal/legal-page-body";
 import { legalPages } from "@/data/legal-pages";
 
 const descriptions: Record<string, string> = {
-  iabs: "Texas Information About Brokerage Services (IABS) for Dream Home Collections.",
+  iabs: "Texas Information About Brokerage Services (IABS) for Central Metro Realty.",
   "consumer-protection-notice":
     "Texas Real Estate Commission Consumer Protection Notice — key rights and resources.",
   "mls-rules-and-regulations": "Full Texas REALTORS MLS Rules and Regulations document.",

@@ -1,19 +1,19 @@
 import Link from "next/link";
-import { BROKER_CONTACT, brokerFullAddressLine } from "@/lib/broker-contact";
-import { site } from "@/lib/site";
+import { BROKER_CONTACT, DESIGNATED_BROKER, LICENSED_SUPERVISOR } from "@/lib/broker-contact";
 
 const SPONSORING_BROKER = {
   name: BROKER_CONTACT.sponsoringBroker,
   license: BROKER_CONTACT.sponsoringBrokerLicense,
   email: BROKER_CONTACT.email,
-  phone: BROKER_CONTACT.phone,
-  address: brokerFullAddressLine()
+  phone: BROKER_CONTACT.phone
 };
+
+function telHref(phone: string) {
+  return `tel:+1${phone.replace(/[^0-9]/g, "")}`;
+}
 
 /** Substance of the TREC IABS form (rev. 11-03-2025) with firm-specific contact information. */
 export function IabsContent() {
-  const addressLine = SPONSORING_BROKER.address;
-
   return (
     <div className="space-y-6 text-sm leading-relaxed text-[var(--ink)]">
       <p className="text-[var(--muted)]">
@@ -147,26 +147,13 @@ export function IabsContent() {
           </p>
         </header>
 
-        {addressLine ? (
-          <address className="not-italic border border-[var(--stone)] bg-[var(--white)] p-4 text-sm text-[var(--ink)]">
-            <div className="font-semibold text-[var(--navy)]">{site.name} — business address</div>
-            <div className="mt-2">{addressLine}</div>
-          </address>
-        ) : (
-          <address className="not-italic border border-[var(--stone)] bg-[var(--white)] p-4 text-sm text-[var(--ink)]">
-            <div className="font-semibold text-[var(--navy)]">{site.name}</div>
-            <div className="mt-2">
-              <a href={`mailto:${BROKER_CONTACT.email}`} className="text-[var(--gold-dark)] underline underline-offset-2">
-                {BROKER_CONTACT.email}
-              </a>
-            </div>
-            <div>
-              <a href={`tel:${BROKER_CONTACT.phoneTel}`} className="text-[var(--gold-dark)]">
-                {BROKER_CONTACT.phone}
-              </a>
-            </div>
-          </address>
-        )}
+        <address className="not-italic border border-[var(--stone)] bg-[var(--white)] p-4 text-sm text-[var(--ink)]">
+          <div className="font-semibold text-[var(--navy)]">Central Metro Realty — business address</div>
+          <div className="mt-2">{BROKER_CONTACT.streetAddress}</div>
+          <div>
+            {BROKER_CONTACT.city}, {BROKER_CONTACT.state} {BROKER_CONTACT.postalCode}
+          </div>
+        </address>
 
         <div className="overflow-x-auto">
           <table className="w-full min-w-[520px] border-collapse text-xs text-[var(--ink)]">
@@ -196,7 +183,7 @@ export function IabsContent() {
                   <span className="block text-[10px] font-normal text-[var(--muted)]">(Licensed business entity)</span>
                 </th>
                 <td className="px-3 py-2">{SPONSORING_BROKER.name}</td>
-                <td className="px-3 py-2 font-mono">{SPONSORING_BROKER.license || "Available on request"}</td>
+                <td className="px-3 py-2 font-mono">{SPONSORING_BROKER.license}</td>
                 <td className="px-3 py-2 break-all">
                   <a
                     href={`mailto:${SPONSORING_BROKER.email}`}
@@ -206,7 +193,7 @@ export function IabsContent() {
                   </a>
                 </td>
                 <td className="px-3 py-2 whitespace-nowrap">
-                  <a href={`tel:${BROKER_CONTACT.phoneTel}`} className="text-[var(--gold-dark)] hover:text-[var(--navy)]">
+                  <a href={telHref(SPONSORING_BROKER.phone)} className="text-[var(--gold-dark)] hover:text-[var(--navy)]">
                     {SPONSORING_BROKER.phone}
                   </a>
                 </td>
@@ -216,8 +203,20 @@ export function IabsContent() {
                   Designated Broker
                   <span className="block text-[10px] font-normal text-[var(--muted)]">(of business entity)</span>
                 </th>
-                <td className="px-3 py-2 text-[var(--muted)]" colSpan={4}>
-                  Provided per transaction (when applicable).
+                <td className="px-3 py-2">{DESIGNATED_BROKER.name}</td>
+                <td className="px-3 py-2 font-mono">{DESIGNATED_BROKER.license}</td>
+                <td className="px-3 py-2 break-all">
+                  <a
+                    href={`mailto:${DESIGNATED_BROKER.email}`}
+                    className="text-[var(--gold-dark)] underline underline-offset-2 hover:text-[var(--navy)]"
+                  >
+                    {DESIGNATED_BROKER.email}
+                  </a>
+                </td>
+                <td className="px-3 py-2 whitespace-nowrap">
+                  <a href={telHref(DESIGNATED_BROKER.phone)} className="text-[var(--gold-dark)] hover:text-[var(--navy)]">
+                    {DESIGNATED_BROKER.phone}
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -225,8 +224,20 @@ export function IabsContent() {
                   Licensed Supervisor
                   <span className="block text-[10px] font-normal text-[var(--muted)]">of sales agent / associate</span>
                 </th>
-                <td className="px-3 py-2 text-[var(--muted)]" colSpan={4}>
-                  Provided per transaction (when applicable).
+                <td className="px-3 py-2">{LICENSED_SUPERVISOR.name}</td>
+                <td className="px-3 py-2 font-mono">{LICENSED_SUPERVISOR.license}</td>
+                <td className="px-3 py-2 break-all">
+                  <a
+                    href={`mailto:${LICENSED_SUPERVISOR.email}`}
+                    className="text-[var(--gold-dark)] underline underline-offset-2 hover:text-[var(--navy)]"
+                  >
+                    {LICENSED_SUPERVISOR.email}
+                  </a>
+                </td>
+                <td className="px-3 py-2 whitespace-nowrap">
+                  <a href={telHref(LICENSED_SUPERVISOR.phone)} className="text-[var(--gold-dark)] hover:text-[var(--navy)]">
+                    {LICENSED_SUPERVISOR.phone}
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -255,14 +266,6 @@ export function IabsContent() {
         </p>
       </section>
 
-      <section className="space-y-3 border border-[var(--gold)] bg-[var(--ivory)] p-5">
-        <h2 className="text-base font-semibold text-[var(--navy)]">Acknowledgement</h2>
-        <p>
-          By contacting {site.name} or using this website, you confirm that you have the opportunity to review this
-          notice and may retain a copy for your records.
-        </p>
-      </section>
-
       <section className="space-y-3">
         <h2 className="text-base font-semibold text-[var(--navy)]">Consumer Protection Notice</h2>
         <p>
@@ -279,7 +282,7 @@ export function IabsContent() {
 
       <p className="border-t border-[var(--stone)] pt-4 text-xs text-[var(--muted)]">
         This page reproduces the substance of the TREC Information About Brokerage Services form (rev. 11-03-2025) with
-        the firm-specific contact information for {site.name}. For the official current PDF, see{" "}
+        the firm-specific contact information for Central Metro Realty. For the official current PDF, see{" "}
         <a
           href="https://www.trec.texas.gov/forms/information-about-brokerage-services"
           target="_blank"

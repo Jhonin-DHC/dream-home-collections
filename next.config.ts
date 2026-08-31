@@ -22,6 +22,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.dreamhomecollections.com"
+      },
+      {
+        protocol: "https",
         hostname: "*.r2.dev"
       },
       ...(configuredR2Hostname

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createMemberSession, verifyMemberCredentials } from "@/lib/member-auth";
+import { publicErrorMessage } from "@/lib/public-error";
 
 export async function POST(request: Request) {
   try {
@@ -14,7 +15,9 @@ export async function POST(request: Request) {
     await createMemberSession(member.email);
     return NextResponse.json({ ok: true, email: member.email });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Login failed.";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json(
+      { error: publicErrorMessage(error, "Login failed. Please try again.") },
+      { status: 500 }
+    );
   }
 }

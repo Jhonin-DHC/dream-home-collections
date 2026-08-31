@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createMember, createMemberSession } from "@/lib/member-auth";
+import { publicErrorMessage } from "@/lib/public-error";
 
 export async function POST(request: Request) {
   try {
@@ -19,8 +20,10 @@ export async function POST(request: Request) {
     await createMemberSession(member.email);
     return NextResponse.json({ ok: true, email: member.email }, { status: 201 });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Registration failed.";
-    const status = message.includes("already exists") ? 409 : 500;
+    const raw = error instanceof Error ? error.message : "Registration failed.";
+    const status = raw.includes("already exists") ? 409 : 500;
+    const message =
+      status === 409 ? raw : publicErrorMessage(error, "Registration failed. Please try again.");
     return NextResponse.json({ error: message }, { status });
   }
 }

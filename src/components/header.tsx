@@ -35,9 +35,10 @@ export function Header() {
   }, [pathname]);
 
   const openAuth = (mode: "login" | "register") => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("auth", mode);
-    router.push(`${url.pathname}${url.search}`);
+    const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    params.set("auth", mode);
+    router.push(`${pathname}?${params.toString()}`);
+    setOpen(false);
   };
 
   return (
