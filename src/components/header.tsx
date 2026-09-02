@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
+import { SocialLinks } from "@/components/social-links";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -61,20 +62,7 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 text-xs text-[var(--navy)] lg:flex">
-          <div className="flex gap-2">
-            <a href={site.socials.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
-              Facebook
-            </a>
-            <a href={site.socials.youtube} target="_blank" rel="noreferrer" aria-label="YouTube">
-              YouTube
-            </a>
-            <a href={site.socials.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
-              Instagram
-            </a>
-            <a href={site.socials.pinterest} target="_blank" rel="noreferrer" aria-label="Pinterest">
-              Pinterest
-            </a>
-          </div>
+          <SocialLinks />
           <a href={`mailto:${site.email}`} className="hidden xl:inline">
             {site.email}
           </a>
@@ -114,6 +102,7 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <SocialLinks />
             <a href={`mailto:${site.email}`}>{site.email}</a>
             <a href={site.phoneHref}>{site.phone}</a>
             {memberName ? (

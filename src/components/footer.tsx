@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { SocialLinks } from "@/components/social-links";
 
 export function Footer() {
   return (
@@ -9,20 +10,7 @@ export function Footer() {
         <div>
           <Image src={site.logo} alt={site.name} width={200} height={56} className="h-12 w-auto brightness-0 invert" />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[var(--stone)]">{site.description}</p>
-          <div className="mt-5 flex flex-wrap gap-4 text-sm">
-            <a href={site.socials.facebook} target="_blank" rel="noreferrer">
-              Facebook
-            </a>
-            <a href={site.socials.instagram} target="_blank" rel="noreferrer">
-              Instagram
-            </a>
-            <a href={site.socials.youtube} target="_blank" rel="noreferrer">
-              YouTube
-            </a>
-            <a href={site.socials.pinterest} target="_blank" rel="noreferrer">
-              Pinterest
-            </a>
-          </div>
+          <SocialLinks className="mt-5 text-[var(--ivory)]" />
         </div>
         <div>
           <h3 className="font-[family-name:var(--font-serif)] text-xl">Quick Links</h3>

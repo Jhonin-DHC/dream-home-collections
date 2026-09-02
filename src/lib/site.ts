@@ -2,7 +2,7 @@ export const site = {
   name: "Dream Home Collections",
   shortName: "DHC",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://dreamhomecollections.com",
-  email: "concierge@dreamhomecollections.com",
+  email: "concierge@resolutionrealtygroup.com",
   phone: "(469) 727-6477",
   phoneHref: "tel:+14697276477",
   tagline: "Making Your Dream Home a Reality",
