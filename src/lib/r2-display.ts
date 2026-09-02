@@ -1,3 +1,5 @@
+import { rewriteLegacyWpMediaUrl } from "@/lib/wp-media";
+
 const MEDIA_PREFIXES = ["listings/", "neighborhoods/", "posts/", "uploads/"];
 
 function isAllowedMediaKey(key: string) {
@@ -16,6 +18,7 @@ function isOurR2PublicHost(hostname: string) {
 
 export function toDisplayImageUrl(url: string) {
   if (!url) return url;
+  url = rewriteLegacyWpMediaUrl(url);
   if (url.startsWith("/api/media/") || url.startsWith("/brand/") || url.startsWith("/")) return url;
   try {
     const parsed = new URL(url);

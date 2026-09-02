@@ -1,6 +1,7 @@
 import type { PublicListing } from "@/types/content";
+import { WP_UPLOADS_BASE } from "@/lib/wp-media";
 
-const wp = "https://dreamhomecollections.com/wp-content/uploads";
+const wp = WP_UPLOADS_BASE;
 
 export const seedListings: PublicListing[] = [
   {

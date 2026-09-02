@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "l97d0gtmtn.wpdns.site"
+      },
+      {
+        protocol: "https",
         hostname: "*.r2.dev"
       },
       ...(configuredR2Hostname

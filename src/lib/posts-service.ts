@@ -1,8 +1,17 @@
 import { connectMongo, isMongoConfigured } from "@/lib/mongodb";
 import { normalizePublicImageUrl } from "@/lib/r2";
+import { rewriteLegacyWpMediaInText } from "@/lib/wp-media";
 import { Post } from "@/models/Post";
 import { seedPosts } from "@/data/posts";
 import type { PublicPost } from "@/types/content";
+
+function withPublicMedia(post: PublicPost): PublicPost {
+  return {
+    ...post,
+    featuredImage: normalizePublicImageUrl(post.featuredImage),
+    body: rewriteLegacyWpMediaInText(post.body)
+  };
+}
 
 function fromDoc(doc: Record<string, unknown>): PublicPost {
   const publishedAt = doc.publishedAt instanceof Date ? doc.publishedAt.toISOString() : String(doc.publishedAt ?? "");
@@ -11,7 +20,7 @@ function fromDoc(doc: Record<string, unknown>): PublicPost {
     slug: String(doc.slug ?? ""),
     title: String(doc.title ?? ""),
     excerpt: String(doc.excerpt ?? ""),
-    body: String(doc.body ?? ""),
+    body: rewriteLegacyWpMediaInText(String(doc.body ?? "")),
     category: String(doc.category ?? "Dallas"),
     categorySlug: String(doc.categorySlug ?? "dallas"),
     featuredImage: normalizePublicImageUrl(String(doc.featuredImage ?? "")),
@@ -23,13 +32,13 @@ function fromDoc(doc: Record<string, unknown>): PublicPost {
 
 export async function getPublishedPosts(): Promise<PublicPost[]> {
   try {
-    if (!isMongoConfigured()) return seedPosts;
+    if (!isMongoConfigured()) return seedPosts.map(withPublicMedia);
     await connectMongo();
     const docs = await Post.find({ published: true }).sort({ publishedAt: -1 }).lean();
-    if (docs.length === 0) return seedPosts;
+    if (docs.length === 0) return seedPosts.map(withPublicMedia);
     return docs.map((doc) => fromDoc(doc as Record<string, unknown>));
   } catch {
-    return seedPosts;
+    return seedPosts.map(withPublicMedia);
   }
 }
 

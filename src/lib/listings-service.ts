@@ -1,8 +1,18 @@
 import { connectMongo, isMongoConfigured } from "@/lib/mongodb";
 import { normalizePublicImageUrl, normalizePublicImageUrls } from "@/lib/r2";
+import { rewriteLegacyWpMediaInText } from "@/lib/wp-media";
 import { Listing } from "@/models/Listing";
 import { seedListings } from "@/data/listings";
 import type { PublicListing } from "@/types/content";
+
+function withPublicMedia(listing: PublicListing): PublicListing {
+  return {
+    ...listing,
+    imageUrl: normalizePublicImageUrl(listing.imageUrl),
+    imageUrls: normalizePublicImageUrls(listing.imageUrls),
+    description: rewriteLegacyWpMediaInText(listing.description)
+  };
+}
 
 function fromDoc(doc: Record<string, unknown>): PublicListing {
   return {
@@ -27,7 +37,7 @@ function fromDoc(doc: Record<string, unknown>): PublicListing {
     mlsNumber: String(doc.mlsNumber ?? ""),
     hoa: String(doc.hoa ?? ""),
     features: Array.isArray(doc.features) ? doc.features.map(String) : [],
-    description: String(doc.description ?? ""),
+    description: rewriteLegacyWpMediaInText(String(doc.description ?? "")),
     imageUrl: normalizePublicImageUrl(String(doc.imageUrl ?? "")),
     imageUrls: normalizePublicImageUrls(Array.isArray(doc.imageUrls) ? doc.imageUrls.map(String) : []),
     seoTitle: String(doc.seoTitle ?? ""),
@@ -39,13 +49,13 @@ function fromDoc(doc: Record<string, unknown>): PublicListing {
 
 export async function getPublishedListings(): Promise<PublicListing[]> {
   try {
-    if (!isMongoConfigured()) return seedListings.filter((item) => item.status !== "draft");
+    if (!isMongoConfigured()) return seedListings.filter((item) => item.status !== "draft").map(withPublicMedia);
     await connectMongo();
     const docs = await Listing.find({ status: { $ne: "draft" } }).sort({ createdAt: -1 }).lean();
-    if (docs.length === 0) return seedListings.filter((item) => item.status !== "draft");
+    if (docs.length === 0) return seedListings.filter((item) => item.status !== "draft").map(withPublicMedia);
     return docs.map((doc) => fromDoc(doc as Record<string, unknown>));
   } catch {
-    return seedListings.filter((item) => item.status !== "draft");
+    return seedListings.filter((item) => item.status !== "draft").map(withPublicMedia);
   }
 }
 

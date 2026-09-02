@@ -13,7 +13,7 @@ export const seedPosts: PublicPost[] = [
     category: "Dallas",
     categorySlug: "dallas",
     featuredImage:
-      "https://dreamhomecollections.com/wp-content/uploads/2025/07/thumb-yt-dhc-e1752158172926.png",
+      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/thumb-yt-dhc-e1752158172926.png",
     publishedAt: "2026-02-03T13:10:30.000Z",
     seoTitle: "Why DFW Is One of the BEST Places to Invest in 2026",
     seoDescription:
@@ -30,7 +30,7 @@ export const seedPosts: PublicPost[] = [
     category: "Houston",
     categorySlug: "houston",
     featuredImage:
-      "https://dreamhomecollections.com/wp-content/uploads/2025/07/01_0417415049fb316c9455fe6d437c6425fb50456b_mls.webp",
+      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/01_0417415049fb316c9455fe6d437c6425fb50456b_mls.webp",
     publishedAt: "2026-01-29T14:01:55.000Z",
     seoTitle: "I Toured 10 Homes in Houston – 2026 Market Update",
     seoDescription: "Houston luxury market update 2026 — ten homes toured and what buyers need to know."
@@ -46,7 +46,7 @@ export const seedPosts: PublicPost[] = [
     category: "Dallas",
     categorySlug: "dallas",
     featuredImage:
-      "https://dreamhomecollections.com/wp-content/uploads/2025/07/1-print-Pentridge-Dr-1306-001-scaled.webp",
+      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/1-print-Pentridge-Dr-1306-001-scaled.webp",
     publishedAt: "2025-08-01T17:03:32.000Z",
     seoTitle: "The Art of Pricing: How to Strategically Value Your Dallas Home",
     seoDescription: "How to strategically value a Dallas luxury home — comparables, story, and timing."
@@ -62,7 +62,7 @@ export const seedPosts: PublicPost[] = [
     category: "Austin",
     categorySlug: "austin",
     featuredImage:
-      "https://dreamhomecollections.com/wp-content/uploads/2025/07/hillsofkings.jpeg",
+      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/hillsofkings.jpeg",
     publishedAt: "2025-07-31T19:10:39.000Z",
     seoTitle: "The Art of Pricing: How to Strategically Value Your Austin Home",
     seoDescription: "Strategic pricing for Austin luxury homes — Hill Country, Tarrytown, and downtown."
