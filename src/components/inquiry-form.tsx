@@ -45,7 +45,7 @@ export function InquiryForm({
   if (status === "sent") {
     return (
       <p className="border border-[var(--gold)] bg-white p-5 text-sm text-[var(--navy)]">
-        Thank you. Your message has been received. A concierge will review it in the admin inbox.
+        Thank you. Your message has been received. You can also reach out to us via Call or SMS.
       </p>
     );
   }
