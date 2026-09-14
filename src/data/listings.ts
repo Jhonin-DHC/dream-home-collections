@@ -1,7 +1,4 @@
 import type { PublicListing } from "@/types/content";
-import { WP_UPLOADS_BASE } from "@/lib/wp-media";
-
-const wp = WP_UPLOADS_BASE;
 
 export const seedListings: PublicListing[] = [
   {
@@ -45,13 +42,13 @@ export const seedListings: PublicListing[] = [
 <h3>Prestigious Location and Schools</h3>
 <p>The property resides in the highly acclaimed Highland Park Independent School District (HPISD).</p>
 <ul><li>Armstrong Elementary School</li><li>Highland Park Middle School</li><li>Highland Park High School</li></ul>`,
-    imageUrl: `${wp}/2025/10/4000-Euclid-Avenue-Highland-Park-Exterior.webp`,
+    imageUrl: "/images/listings/4000-euclid-avenue/4000-Euclid-Avenue-Highland-Park-Exterior.webp",
     imageUrls: [
-      `${wp}/2025/10/4000-Euclid-Avenue-Highland-Park-Kitchen.webp`,
-      `${wp}/2025/10/4000-Euclid-Avenue-Highland-Park-Dining-Area.webp`,
-      `${wp}/2025/10/4000-Euclid-Avenue-Highland-Park-Bedroom.webp`,
-      `${wp}/2025/10/4000-Euclid-Avenue-Highland-Park-Bathroom.webp`,
-      `${wp}/2025/10/4000-Euclid-Avenue-Highland-Park-Gym-Room.webp`
+      "/images/listings/4000-euclid-avenue/4000-Euclid-Avenue-Highland-Park-Kitchen.webp",
+      "/images/listings/4000-euclid-avenue/4000-Euclid-Avenue-Highland-Park-Dining-Area.webp",
+      "/images/listings/4000-euclid-avenue/4000-Euclid-Avenue-Highland-Park-Bedroom.webp",
+      "/images/listings/4000-euclid-avenue/4000-Euclid-Avenue-Highland-Park-Bathroom.webp",
+      "/images/listings/4000-euclid-avenue/4000-Euclid-Avenue-Highland-Park-Gym-Room.webp"
     ],
     seoTitle: "4000 Euclid Avenue | Exquisite European-Inspired Estate in Highland Park, TX",
     seoDescription:
@@ -83,8 +80,15 @@ export const seedListings: PublicListing[] = [
     features: ["Highland Park ISD", "Formal gardens"],
     description:
       "<p>A distinguished Highland Park residence on N Versailles Avenue, offering the privacy, architecture, and school district that define Dallas’s most coveted enclave.</p>",
-    imageUrl: `${wp}/elementor/thumbs/Lexington-r8kaalow2ape20f077leyt0kppzvd26oqljynk7xww.webp`,
-    imageUrls: [],
+    imageUrl: "/images/listings/4517-n-versailles-avenue/4517-n-versailles-avenue-highland-park-image-hero.webp",
+    imageUrls: [
+      "/images/listings/4517-n-versailles-avenue/4517-N-Versailles-Avenue-Highland-Park-Kitchen.webp",
+      "/images/listings/4517-n-versailles-avenue/4517-N-Versailles-Avenue-Highland-Park-Dining-Area.webp",
+      "/images/listings/4517-n-versailles-avenue/4517-N-Versailles-Avenue-Highland-Park-Living-Room.webp",
+      "/images/listings/4517-n-versailles-avenue/4517-N-Versailles-Avenue-Highland-Park-Bedroom.webp",
+      "/images/listings/4517-n-versailles-avenue/4517-N-Versailles-Avenue-Highland-Park-Bathroom.webp",
+      "/images/listings/4517-n-versailles-avenue/4517-N-Versailles-Avenue-Highland-Park-Pool-Area.webp"
+    ],
     seoTitle: "4517 N Versailles Avenue Highland Park",
     seoDescription: "Highland Park luxury home at 4517 N Versailles Avenue.",
     featuredOnHome: false,
@@ -114,7 +118,7 @@ export const seedListings: PublicListing[] = [
     features: ["Fenced property", "Hilltop views", "3 ponds"],
     description:
       "<p>Beautiful home on a hilltop overlooking 60 acres with 3 ponds and breathtaking views in every direction.</p>",
-    imageUrl: `${wp}/elementor/thumbs/Lexington-r8kaalow2ape20f077leyt0kppzvd26oqljynk7xww.webp`,
+    imageUrl: "/images/listings/lexington-meadows-estate/lexington.webp",
     imageUrls: [],
     seoTitle: "Lexington Meadows Estate | Coming Soon",
     seoDescription: "Hilltop estate overlooking 60 acres with 3 ponds. Coming soon from Dream Home Collections.",
@@ -145,7 +149,7 @@ export const seedListings: PublicListing[] = [
     features: ["Villages of Stonelake Estates"],
     description:
       "<p>Welcome to this beautifully reimagined home in coveted Villages of Stonelake Estates.</p>",
-    imageUrl: `${wp}/elementor/thumbs/seasidelane-r8glwubcw2ql4my6w6nhyfg1lvtmncg3i9vww6glm8.jpeg`,
+    imageUrl: "/images/listings/seaside-lane/seaside-lane.jpeg",
     imageUrls: [],
     seoTitle: "Seaside Lane | Coming Soon",
     seoDescription: "Beautifully reimagined home in Villages of Stonelake Estates. Coming soon.",
@@ -175,7 +179,7 @@ export const seedListings: PublicListing[] = [
     hoa: "",
     features: ["Park Place Estates", "Custom home"],
     description: "<p>Amazing custom home in the exclusive Park Place Estates.</p>",
-    imageUrl: `${wp}/elementor/thumbs/jernigan-drive-r8glwoobr2iv6z6dt47qjgva1klfd5tphhz00ioynk.jpeg`,
+    imageUrl: "/images/listings/jernigan-drive/jernigan-drive.jpeg",
     imageUrls: [],
     seoTitle: "Jernigan Drive | Coming Soon",
     seoDescription: "Custom home in exclusive Park Place Estates. Coming soon.",
@@ -206,7 +210,7 @@ export const seedListings: PublicListing[] = [
     features: ["Landscaped grounds", "Spacious layouts"],
     description:
       "<p>Nestled in one of the area's most charming and sought-after neighborhoods, Briarwood Lane offers timeless elegance, spacious layouts, and beautifully landscaped surroundings.</p>",
-    imageUrl: `${wp}/elementor/thumbs/briarwood-r8glwjz4swcfkxd7kk6lp01z2n8laob1supkm4vxio.jpeg`,
+    imageUrl: "/images/listings/briarwood-lane/briarwood.jpeg",
     imageUrls: [],
     seoTitle: "Briarwood Lane | Coming Soon",
     seoDescription: "Timeless elegance on Briarwood Lane. 5 beds, 5 baths, 6,226 sq ft. Coming soon.",
@@ -237,7 +241,7 @@ export const seedListings: PublicListing[] = [
     features: ["Updated interiors", "Large backyard", "Near top schools"],
     description:
       "<p>Charming and spacious, this updated home offers modern interiors, a large backyard, and a prime location near top schools and parks—perfect for comfortable family living.</p>",
-    imageUrl: `${wp}/elementor/thumbs/01_0417415049fb316c9455fe6d437c6425fb50456b_mls-r8k2k5xzl1jmwcv22urwd2h1wqdn8st3sgm0wt292o.webp`,
+    imageUrl: "/images/listings/west-plano-pentridge-6808/pentridge-6808.webp",
     imageUrls: [],
     seoTitle: "Beautiful Home in West Plano | 6808 Pentridge Drive",
     seoDescription: "Updated West Plano home with 6 rooms, 4 baths, and 3,791 sq ft.",
@@ -268,7 +272,7 @@ export const seedListings: PublicListing[] = [
     features: ["Move-in ready", "Stylish kitchen", "Peaceful outdoor space"],
     description:
       "<p>Bright, welcoming, and move-in ready, this home features a functional layout, stylish kitchen, and peaceful outdoor space—ideal for everyday comfort and convenience.</p>",
-    imageUrl: `${wp}/elementor/thumbs/1-print-Pentridge-Dr-1306-001-scaled-r8k2y3vsykmr44lynvqocjt74hnnf65rpgzb6ke0s0.webp`,
+    imageUrl: "/images/listings/west-plano-pentridge-6809/pentridge-6809.webp",
     imageUrls: [],
     seoTitle: "Exceptional Home in West Plano | 6809 Pentridge Drive",
     seoDescription: "Move-in ready West Plano home with 5 rooms, 4 baths, and 3,085 sq ft.",

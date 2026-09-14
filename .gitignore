@@ -12,3 +12,7 @@ env.local
 .env.production.local
 .env.test.local
 .vercel
+*.wpress
+.wp-extract/
+.wp-extract-list.txt
+scripts/__pycache__/

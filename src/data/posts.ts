@@ -12,8 +12,7 @@ export const seedPosts: PublicPost[] = [
 <p>Whether you’re relocating, trading up, or building a portfolio, our concierge team can connect you with off-market opportunities and a clear read on where DFW luxury is heading next.</p>`,
     category: "Dallas",
     categorySlug: "dallas",
-    featuredImage:
-      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/thumb-yt-dhc-e1752158172926.png",
+    featuredImage: "/images/posts/dfw-best-places-to-invest-2026/thumb-yt-dhc.png",
     publishedAt: "2026-02-03T13:10:30.000Z",
     seoTitle: "Why DFW Is One of the BEST Places to Invest in 2026",
     seoDescription:
@@ -29,8 +28,7 @@ export const seedPosts: PublicPost[] = [
 <p>Dream Home Collections brings Houston buyers the same concierge standard we offer in Dallas — curated homes, honest pricing context, and a path from first showing to closing.</p>`,
     category: "Houston",
     categorySlug: "houston",
-    featuredImage:
-      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/01_0417415049fb316c9455fe6d437c6425fb50456b_mls.webp",
+    featuredImage: "/images/posts/houston-10-homes-market-update-2026/houston-homes.webp",
     publishedAt: "2026-01-29T14:01:55.000Z",
     seoTitle: "I Toured 10 Homes in Houston – 2026 Market Update",
     seoDescription: "Houston luxury market update 2026 — ten homes toured and what buyers need to know."
@@ -45,8 +43,7 @@ export const seedPosts: PublicPost[] = [
 <p>Strategic pricing starts with comparable luxury sales, condition, lot, and the story the home tells. Dream Home Collections helps owners position their property for the buyers who will recognize its value — without leaving money on the table or lingering on market.</p>`,
     category: "Dallas",
     categorySlug: "dallas",
-    featuredImage:
-      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/1-print-Pentridge-Dr-1306-001-scaled.webp",
+    featuredImage: "/images/posts/strategically-value-your-dallas-home/dallas-home.webp",
     publishedAt: "2025-08-01T17:03:32.000Z",
     seoTitle: "The Art of Pricing: How to Strategically Value Your Dallas Home",
     seoDescription: "How to strategically value a Dallas luxury home — comparables, story, and timing."
@@ -61,8 +58,7 @@ export const seedPosts: PublicPost[] = [
 <p>Austin’s luxury segment moves on lifestyle, views, and school access as much as square footage. We help you read that market and price with intent.</p>`,
     category: "Austin",
     categorySlug: "austin",
-    featuredImage:
-      "https://l97d0gtmtn.wpdns.site/wp-content/uploads/2025/07/hillsofkings.jpeg",
+    featuredImage: "/images/posts/strategically-value-your-austin-home/hillsofkings.jpeg",
     publishedAt: "2025-07-31T19:10:39.000Z",
     seoTitle: "The Art of Pricing: How to Strategically Value Your Austin Home",
     seoDescription: "Strategic pricing for Austin luxury homes — Hill Country, Tarrytown, and downtown."
