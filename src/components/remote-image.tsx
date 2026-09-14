@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toDisplayImageUrl } from "@/lib/r2-display";
 
 interface RemoteImageProps {
@@ -12,8 +12,13 @@ interface RemoteImageProps {
 
 export function RemoteImage({ src, alt, className }: RemoteImageProps) {
   const [failed, setFailed] = useState(false);
-  if (!src) return null;
   const displaySrc = toDisplayImageUrl(src);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src, displaySrc]);
+
+  if (!src) return null;
 
   if (failed) {
     return <div className="absolute inset-0 bg-[var(--navy)]" aria-hidden />;

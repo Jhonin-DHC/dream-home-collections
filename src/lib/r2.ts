@@ -1,6 +1,6 @@
 import { GetObjectCommand, HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { randomUUID } from "crypto";
-import { rewriteLegacyWpMediaUrl } from "@/lib/wp-media";
+import { toDisplayImageUrl } from "@/lib/r2-display";
 
 function getR2Config() {
   const accountId = process.env.R2_ACCOUNT_ID;
@@ -77,21 +77,7 @@ export function isR2Configured() {
 }
 
 export function normalizePublicImageUrl(url: string) {
-  if (!url) return url;
-  const rewritten = rewriteLegacyWpMediaUrl(url);
-  if (!process.env.R2_PUBLIC_BASE_URL) return rewritten;
-  try {
-    const current = new URL(rewritten);
-    const targetBase = getPublicBaseUrl();
-    const targetHost = new URL(targetBase).hostname;
-    if (current.hostname === targetHost) return rewritten;
-    if (current.hostname.endsWith(".r2.dev")) {
-      return `${targetBase}${current.pathname}${current.search}`;
-    }
-    return rewritten;
-  } catch {
-    return rewritten;
-  }
+  return toDisplayImageUrl(url);
 }
 
 export function normalizePublicImageUrls(urls: string[]) {
